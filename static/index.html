@@ -21,13 +21,7 @@
       </div>
       <div class="row">
         <div class="col-sm">
-          <button type="button" class="btn btn-success" id="predict_button2">Predict Power</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <input class="form-control" id="power_prediction" type="text" placeholder="Power Output...." readonly>
-          <p id="power_prediction"></p>
+          <button type="button" class="btn btn-success" id="predict_button">Predict Power</button>
         </div>
       </div>
     </div>
@@ -36,27 +30,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script>
-        // Adapted from stack overflow posts.
-        $("#predict_button").click(function(e) {
-            e.preventDefault();
-            let message = {
-              speed: $("#speed_input").val()
-            }
-            console.log(message)
-
-            $.post("/predict", JSON.stringify(message), function(response){
-              $("#power_prediction").text(response.value);
-              console.log(response.value);
-            });
-        });
-
-        $("#predict_button2").click(function(){
+        $("#predict_button").click(function(){
         let message = {
           speed: $("#speed_input").val()
         }
         console.log(message);
         $.post("/predict", JSON.stringify(message), function(response){
             $("#power_prediction").text(response.prediction.power);
+            alert("Predicted Power Output: \n" + response.prediction.power)
             console.log(response.prediction.power);
         });
     });

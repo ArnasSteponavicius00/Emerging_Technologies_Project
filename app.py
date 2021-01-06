@@ -21,7 +21,7 @@ def index():
 
 # api route that returns the csv dataset using numpy
 # adapted from https://pythonhealthcare.org/2018/04/04/25-reading-and-writing-csv-files-using-numpy-and-pandas/
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
     print('loading keras model')
     get_model()
